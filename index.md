@@ -1,37 +1,50 @@
-## Welcome to GitHub Pages
+![](https://i.imgur.com/vkF51nI.png)
+ ###### tags: `kreis` `github` `ssh`
+# GitHub ssh接続メモ
 
-You can use the [editor on GitHub](https://github.com/kreis-inc/firstone/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+---
+## はじめに
 
-### Markdown
+* GitHubにSSH接続をするにsshの鍵登録をします。すでにGiuhubのユーザ登録済の状態とする。まだの場合は下記よりGitHubのホームページより登録を行って下さい。※沢山分かりやすい手順がググればありますのでここでは割愛。
+https://github.com
+![](https://i.imgur.com/ulHSDe4.png)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+* Windowsでは`Git for Windows`をインストール。Mac,LinuxはデフォルトでGitが入っている。※Docker等を利用するのであればWSL2がお勧め。Gitはデフォルトで入っている。
+* 個人的に本よりもGithubから出ているドキュメントが一番わかりやすいと思う。![](https://i.imgur.com/xkhqIZp.png)
+---
+## 自分のパソコンで秘密鍵・公開鍵の生成を行う
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+#自分のホームディレクトリに .sshがない場合は作成。
+$cd ~/.ssh
 
-1. Numbered
-2. List
+#下記コマンドを投入
+$ssh-keygen -t rsa
 
-**Bold** and _Italic_ and `Code` text
+* 例） ここではkreis-rsaという名前で作成している、デフォルト（空Enter）はid_rsa。
+はじめて登録（.ssh/下にid.rasが存在しない）の場合はデフォルト（空Enter）で作成したほうがよい。※id.ras意外の場合は下記Configの設定が必要となる。
+![](https://i.imgur.com/Xl8oKBi.png)
 
-[Link](url) and ![Image](src)
-```
+## 公開鍵をGitHubにアップする 
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+* 先ほど作った xxxx.pub（公開鍵）の中身をコピー。
+![](https://i.imgur.com/8wO6IEf.png)
+* https://github.com/settings/ssh　から公開鍵登録。![](https://i.imgur.com/C94t2HO.png)
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kreis-inc/firstone/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+* titleに公開鍵名、コピーした公開鍵の中身（key)をkeyにコピー![](https://i.imgur.com/8ECZeP9.png)
+* 登録後![](https://i.imgur.com/h24Hg6R.png)
+## ターミナルに戻り接続確認を行う 
+* $ssh -T git@github.com で下記メッセージがでれば登録OK！！![](https://i.imgur.com/deEil01.png)
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## gitHub 複数アカウントを作成した場合
+* githubアカウントを複数もっている場合はconfigの記載が必要。![](https://i.imgur.com/3YcoGc5.png)
+* host名で接続確認。![](https://i.imgur.com/RHIuRl6.png)
+
+## 結論 
+複数のGitHubIDを切り替えて作成するには別途バッチファイルが必要。よってプロジェクト毎にDockerを利用してDockerリポジトリ内でgitを利用するのがよいのではと。
+
+
