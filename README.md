@@ -1,8 +1,7 @@
  ![](https://i.imgur.com/vkF51nI.png)
 # Kreis-inc内利用ルール
 ## はじめに
-利用ルールを記載
-はKreis-incを利用方法を記載したドキュメントを管理するリポジトリ。
+- Kreis-incを利用ルールを記載したドキュメント管理するリポジトリ。
 
 ##  ルール
 1. Github kreis-inc organizationの管理者は、東京事業所ネットワーク管理者の大金、小林、近藤になります。
